@@ -1,0 +1,6 @@
+<h1>Cadastro de Empresa</h1>
+
+<%= form_with model: @company, local: true do |f| %>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+<% end %>

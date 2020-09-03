@@ -26,7 +26,7 @@ feature 'User views companies' do
     Company.create!(name: 'Empresa Dois', cnpj: '08.262.335/7251-10', address: 'Rua Direita, 78', 
                     user_email: 'usuario@empresadois.com.br')
 
-    visit company_index_path
+    visit companies_path
     click_on 'Empresa Um'
 
     expect(page).to have_content('Empresa Um')
