@@ -1,6 +1,27 @@
 <h1>Cadastro de Empresa</h1>
 
-<%= form_with model: @company, local: true do |f| %>
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %>
+<% @company.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
 <% end %>
+
+<div>
+  <%= form_with model: @company, local: true do |f| %>
+    <div>
+      <%= f.label :name, 'Nome' %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :cnpj, 'CNPJ' %>
+      <%= f.text_field :cnpj %>
+    </div>
+    <div>
+      <%= f.label :address, 'Endereço' %>
+      <%= f.text_field :address %>
+    </div>
+    <div>
+      <%= f.label :user_email, 'Email do usuário' %>
+      <%= f.text_field :user_email %>
+    </div>
+    <%= f.submit 'Enviar' %>
+  <% end %>
+</div>

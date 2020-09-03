@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      company:
+        one: 'Empresa'
+        other: 'Empresas'
+    attributes:
+      company:
+        name: 'Nome'
+        cnpj: 'CNPJ'
+        address: 'Endereço'
+        user_email: 'Usuário do cadastro'
+        email_domain: 'Domínio do email'

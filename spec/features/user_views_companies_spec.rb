@@ -32,7 +32,8 @@ feature 'User views companies' do
     expect(page).to have_content('Empresa Um')
     expect(page).to have_content('08.262.335/7251-60')
     expect(page).to have_content('Rua das Flores, 1008')
-    expect(page).not_to have_content('usuario@empresaum.com.br')
+    expect(page).to have_content('usuario@empresaum.com.br')
     expect(page).not_to have_content('Empresa Dois')
   end
+  # TODO: adicionar botão voltar
 end
