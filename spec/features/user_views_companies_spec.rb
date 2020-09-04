@@ -35,5 +35,22 @@ feature 'User views companies' do
     expect(page).to have_content('usuario@empresaum.com.br')
     expect(page).not_to have_content('Empresa Dois')
   end
-  # TODO: adicionar botão voltar
+
+  scenario 'and goes back to home page' do
+    visit root_path
+    click_on 'Empresas Cadastradas'
+    click_on 'Voltar'
+
+    expect(current_path).to eq root_path
+  end
+  
+  scenario 'and goes to company registry page' do
+    visit root_path
+    click_on 'Empresas Cadastradas'
+    click_on 'Registrar Empresa'
+
+    expect(current_path).to eq new_company_path
+  end
+  # TODO: adicionar busca pelo nome
+  # TODO: adicionar link para cadastro de empresa
 end
