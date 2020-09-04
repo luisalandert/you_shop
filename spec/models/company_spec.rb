@@ -13,7 +13,7 @@ RSpec.describe Company, type: :model do
 
     end
 
-    xit 'email must be valid' do
+    it 'email must be valid' do
       company = Company.new(name: 'Empresa Um', cnpj: '08.262.335/7251-60', address: 'Rua das Flores, 1008', 
                             user_email: 'usuario@empresaum')
 

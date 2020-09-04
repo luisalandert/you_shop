@@ -13,6 +13,12 @@ feature 'Visitor resgisters company' do
     expect(page).to have_content('Rua das Flores, 1008')
     expect(Company.last.email_domain).to eq '@empresaum.com.br'
   end
-    # TODO: adicionar botão voltar
+  
+  scenario 'and goes back' do
+    visit new_company_path
+    click_on 'Voltar'
+
+    expect(current_path).to eq companies_path
+  end
 
 end

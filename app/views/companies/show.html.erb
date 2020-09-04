@@ -1,10 +1,10 @@
 <%= @company.name %>
 <dl>
-    <dt>CNPJ</dt>
+    <dt><%= Company.human_attribute_name :cnpj %></dt>
     <dd><%= @company.cnpj %></dd>
-    <dt>Endereço</dt>
+    <dt><%= Company.human_attribute_name :address %></dt>
     <dd><%= @company.address %></dd>
-    <dt>Usuário do Cadastro</dt>
+    <dt><%= Company.human_attribute_name :user_email %></dt>
     <dd><%= @company.user_email %></dd>
     <%# TODO: adicionar link para o show to usuário %>
 </dl>
