@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: 'Usuário'
+        other: 'Usuários'
+    attributes:
+      user:
+        full_name: 'Nome Completo'
+        social_name: 'Nome Social'
+        birth_date: 'Data de Nascimento'
+        job_position: 'Cargo'
+        department: 'Departamento'
+        email: 'Email'
+        password: 'Senha'

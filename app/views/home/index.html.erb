@@ -1,6 +1,12 @@
+
 <nav>
-  <%= link_to 'Entrar' %>
-  <%= link_to 'Cadastro' %>
+<% if user_signed_in? %>
+  <%= link_to current_user.full_name %>
+  <%= link_to 'Sair' %>
+<% else %>
+  <%= link_to 'Entrar', new_user_session_path %>
+<% end %>
+  <%= link_to 'Cadastrar' %>
 </nav>
 <h1>you Shop</h1>
 <p>Conecte-se com colaboradores de sua empresa para anunciar e encontrar produtos dos mais variados!</p>
