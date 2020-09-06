@@ -18,11 +18,11 @@
     </div>
     <div>
       <%= f.label :address %>
-      <%= f.text_field :address, placeholder: 'Rua, número, complemento, cidade, estado', size: '40' %>
+      <%= f.text_field :address, placeholder: 'ex: Rua, número, complemento, cidade, estado', size: '42' %>
     </div>
     <div>
       <%= f.label :user_email, 'Email do usuário' %>
-      <%= f.text_field :user_email, placeholder: ' email@empresa.com'%>
+      <%= f.text_field :user_email, placeholder: 'ex: email@empresa.com', size: '22'%>
     </div>
     <%= f.submit 'Enviar' %>
   <% end %>

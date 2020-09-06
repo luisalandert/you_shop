@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  before_action :authenticate_user!, only:[:show]
+  
   def index
     @companies = Company.all.sort_by(&:name)
   end
@@ -15,7 +17,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     @company.email_domain = @company.user_email[/\@(.*)/]
     if @company.save
-      redirect_to @company
+      redirect_to new_user_registration_path
     else
       render :new
     end

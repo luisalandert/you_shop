@@ -8,12 +8,11 @@ feature 'Visitor resgisters company' do
     fill_in 'Email do usuário', with: 'usuario@empresaum.com.br'
     click_on 'Enviar'
 
-    expect(page).to have_content('Empresa Um')
-    expect(page).to have_content('08.262.335/7251-60')
-    expect(page).to have_content('Rua das Flores, 1008')
-    expect(Company.last.email_domain).to eq '@empresaum.com.br'
+    expect(current_path).to eq new_user_registration_path
+
   end
   
+  # TODO: como garantir que só alguém da empresa que vai poder fazer o cadastro? algum regex com o email?
   scenario 'and goes back' do
     visit new_company_path
     click_on 'Voltar'

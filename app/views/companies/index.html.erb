@@ -4,7 +4,7 @@
 <h1>Empresas Cadastradas</h1>
 
 <% @companies.each do |company| %>
-  <%= link_to company.name, company %>
+  <p><%= link_to company.name, company %></p>
 <% end %>
 
 <% if @companies.empty? %>

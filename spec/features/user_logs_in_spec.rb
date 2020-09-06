@@ -15,6 +15,8 @@ feature 'User logs in' do
     expect(page).not_to have_content('Entrar')
   end
 
+  # TODO: se o perfil não estiver completo mostrar 'Perfil' ao invés do nome completo
+
   scenario 'and logs out' do
     user = User.create!(full_name: 'João da Silva', social_name: 'João da Silva',
                         birth_date: Date.parse('10/10/1990'), job_position: 'Engenheiro de software',
