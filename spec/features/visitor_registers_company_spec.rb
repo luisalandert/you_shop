@@ -20,4 +20,5 @@ feature 'Visitor resgisters company' do
     expect(current_path).to eq companies_path
   end
 
+  # TODO: testar o link cadastro
 end
