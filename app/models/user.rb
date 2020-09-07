@@ -5,5 +5,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates_with CorporateEmailValidator
-  # TODO: usar custom validation para garantir que o email corresponde ao email_domain de alguma empresa cadastrada.
 end

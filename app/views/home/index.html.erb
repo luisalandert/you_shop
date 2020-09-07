@@ -16,7 +16,7 @@
 <p>Conecte-se com colaboradores de sua empresa para anunciar e encontrar produtos dos mais variados!</p>
 <p>Cadastre-se já!</p>
 <% if !user_signed_in? %>
-  <%= link_to 'Cadastro de Usuário' %>
+  <%= link_to 'Cadastro de Usuário', new_user_registration_path %>
   <%= link_to 'Cadastro de Empresa', new_company_path %>
 <% end %>
 <%= link_to 'Empresas Cadastradas', companies_path %>

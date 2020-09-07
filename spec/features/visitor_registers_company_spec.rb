@@ -12,6 +12,15 @@ feature 'Visitor registers company' do
 
   end
   
+  scenario 'successfully with nav bar button' do
+    visit root_path
+    click_on 'Cadastrar'
+    click_on 'Cadastrar Empresa'
+
+    expect(current_path).to eq new_company_path
+
+  end
+  
   # TODO: como garantir que só alguém da empresa que vai poder fazer o cadastro? algum regex com o email?
 
   scenario 'and goes back' do
