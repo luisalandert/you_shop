@@ -48,6 +48,19 @@ feature 'User views companies' do
     expect(page).not_to have_content('Empresa Dois')
   end
 
+  scenario 'views details and goes back' do
+    Company.create!(name: 'Empresa Dois', cnpj: '08.262.335/7251-10', address: 'Rua Direita, 78',
+                    user_email: 'usuario@empresadois.com.br', email_domain: '@empresadois.com.br')
+    user = User.create!(email: 'joao@empresadois.com.br', password: '123abc')
+
+    login_as(user, scope: :user)
+    visit companies_path
+    click_on 'Empresa Dois'
+    click_on 'Voltar'
+
+    expect(current_path).to eq companies_path
+  end
+
   scenario 'and goes back to home page' do
     visit root_path
     click_on 'Empresas Cadastradas'
@@ -63,6 +76,17 @@ feature 'User views companies' do
 
     expect(current_path).to eq new_company_path
   end
+
+  scenario 'and cannot see company registry button if logged in' do
+    Company.create!(name: 'Empresa Dois', cnpj: '08.262.335/7251-10', address: 'Rua Direita, 78',
+                    user_email: 'usuario@empresadois.com.br', email_domain: '@empresadois.com.br')
+    user = User.create!(email: 'joao@empresadois.com.br', password: '123abc')
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Empresas Cadastradas'
+
+    expect(page).not_to have_content('Registrar Empresa')
+  end
   # TODO: adicionar busca pelo nome
-  # TODO: adicionar botaão voltar no show de empresas
 end
