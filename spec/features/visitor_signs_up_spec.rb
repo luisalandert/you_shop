@@ -40,3 +40,5 @@ feature 'Visitor signs up' do
     expect(page).to have_content 'corporativo não encontrado, empresa deve estar cadastrada para completar seu registro!'
   end
 end
+
+# TODO: testar o link cadastro de usuário (botão de baixo)

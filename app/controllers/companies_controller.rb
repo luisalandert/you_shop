@@ -10,6 +10,10 @@ class CompaniesController < ApplicationController
   end
   
   def new
+    if user_signed_in?
+      redirect_to root_path, alert: 'Sua empresa já está cadastrada.
+      Para cadastrar outra empresa faça o log out e use o email corporativo da nova empresa.'
+    end
     @company = Company.new
   end
 

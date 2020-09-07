@@ -1,4 +1,4 @@
-feature 'Visitor resgisters company' do
+feature 'Visitor registers company' do
   scenario 'successfully' do
     visit root_path
     click_on 'Cadastro de Empresa'
@@ -13,6 +13,7 @@ feature 'Visitor resgisters company' do
   end
   
   # TODO: como garantir que só alguém da empresa que vai poder fazer o cadastro? algum regex com o email?
+
   scenario 'and goes back' do
     visit new_company_path
     click_on 'Voltar'
@@ -20,5 +21,5 @@ feature 'Visitor resgisters company' do
     expect(current_path).to eq companies_path
   end
 
-  # TODO: testar o link cadastro
+  # TODO: adicionar cadastro de empresa na página de cadastro do botão da nav bar
 end
