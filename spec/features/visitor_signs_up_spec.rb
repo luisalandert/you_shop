@@ -1,7 +1,7 @@
 feature 'Visitor signs up' do
   scenario 'successfully' do
     Company.create!(name: 'Empresa Um', cnpj: '08.262.335/7251-60', address: 'Rua das Flores, 1008', 
-                    user_email: 'usuario@empresaum.com.br')
+                    user_email: 'usuario@empresaum.com.br', email_domain: '@empresaum.com.br')
 
     visit root_path
     click_on 'Cadastrar'
@@ -15,6 +15,8 @@ feature 'Visitor signs up' do
     expect(page).to have_content 'Perfil'
     expect(page).to have_content 'Sair'
     expect(page).not_to have_content 'Entrar'
+
+    # TODO: pq no final do cadastro o usuário é redirecionado para o show da empresa com id 2?
     end
 
   scenario 'and goes back' do
@@ -26,7 +28,7 @@ feature 'Visitor signs up' do
     expect(current_path).to eq register_path
   end
 
-  xscenario 'and company must be registered already' do
+  scenario 'and company must be registered already' do
     visit root_path
     click_on 'Cadastrar'
     click_on 'Cadastrar Usuário'
@@ -35,8 +37,6 @@ feature 'Visitor signs up' do
     fill_in 'Confirme sua senha',	with: 'abcd12'
     click_on 'Cadastrar'
 
-    expect(page).to have_content 'A empresa deve estar cadastrada para completar seu registro!'
-    expect(current_path).to eq new_company
-
+    expect(page).to have_content 'corporativo não encontrado, empresa deve estar cadastrada para completar seu registro!'
   end
 end
