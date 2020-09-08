@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates_with CorporateEmailValidator
+
+  enum status: {incomplete: 0, complete: 10}
 end

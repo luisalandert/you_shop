@@ -1,0 +1,15 @@
+<%= render 'navbar' %>
+
+<%= link_to 'Voltar', root_path %>
+
+<h2><%= @user.social_name %></h2>
+<h3><%= @user.full_name %></h3>
+<h3><%= @user.birth_date %></h3>
+<h3><%= @user.job_position %></h3>
+<h3><%= @user.department %></h3>
+
+<%= link_to 'Editar Dados', edit_user_path %>
+<%= link_to 'Trocar Senha', edit_user_registration_path %>
+
+<%# TODO: editar formato da data %>
+<%# TODO: link para mudar senha %>

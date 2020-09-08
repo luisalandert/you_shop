@@ -1,0 +1,13 @@
+<nav>
+<% if user_signed_in? %>
+  <% if current_user.social_name.blank? %>
+    <%= link_to 'Perfil', user_path(current_user.id) %>
+  <% else %>
+  <%= link_to current_user.social_name, user_path(current_user.id) %>
+  <% end %>
+  <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'Entrar', new_user_session_path %>
+  <%= link_to 'Cadastrar', register_path %>
+<% end %>
+</nav>
