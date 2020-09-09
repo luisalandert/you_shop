@@ -8,7 +8,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user
+      if profile_complete?(@user)
+        @user.complete!
+        redirect_to @user, alert: 'Perfil atualizado com sucesso!'
+      else
+        @user.incomplete!
+        redirect_to @user, alert: 'Perfil atualizado com sucesso! Atenção: para ter acesso a todos os recursos seu perfil deve estar completo!'
+      end
     else
       redirect_to root_path
     end
@@ -19,5 +25,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user)
           .permit(:full_name, :social_name, :birth_date, :job_position, :department)
+  end
+
+  def profile_complete?(user)
+    return false if !user.full_name.present?||!user.social_name.present?||!user.birth_date.present?||
+                    !user.job_position.present?||!user.department.present?
+    return true
   end
 end

@@ -57,7 +57,7 @@ feature 'Visitor signs up' do
     expect(page).to have_content 'corporativo não encontrado, empresa deve estar cadastrada para completar seu registro!'
   end
 
-  xscenario 'default status must be incomplete' do
+  scenario 'default status must be incomplete' do
     Company.create!(name: 'Empresa Um', cnpj: '08.262.335/7251-60', address: 'Rua das Flores, 1008', 
                     user_email: 'usuario@empresaum.com.br', email_domain: '@empresaum.com.br')
 
