@@ -1,8 +1,8 @@
 feature 'User completes profile' do
   scenario 'successfully' do
-    Company.create!(name: 'Empresa Dois', cnpj: '08.262.335/7251-10', address: 'Rua Direita, 78',
-                    user_email: 'usuario@empresadois.com.br', email_domain: '@empresadois.com.br')
-    user = User.create!(email: 'joao@empresadois.com.br', password: '123abc')
+    company = Company.create!(name: 'Empresa Dois', cnpj: '08.262.335/7251-10', address: 'Rua Direita, 78',
+                              user_email: 'usuario@empresadois.com.br', email_domain: '@empresadois.com.br')
+    user = User.create!(email: 'joao@empresadois.com.br', password: '123abc', company: company)
 
     login_as(user, scope: :user)
     visit root_path
@@ -21,9 +21,9 @@ feature 'User completes profile' do
   end
 
   scenario 'if all fields are complete status should be complete' do
-    Company.create!(name: 'Empresa Dois', cnpj: '08.262.335/7251-10', address: 'Rua Direita, 78',
-                    user_email: 'usuario@empresadois.com.br', email_domain: '@empresadois.com.br')
-    user = User.create!(email: 'joao@empresadois.com.br', password: '123abc')
+    company = Company.create!(name: 'Empresa Dois', cnpj: '08.262.335/7251-10', address: 'Rua Direita, 78',
+                              user_email: 'usuario@empresadois.com.br', email_domain: '@empresadois.com.br')
+    user = User.create!(email: 'joao@empresadois.com.br', password: '123abc', company: company)
 
     login_as(user, scope: :user)
     visit root_path

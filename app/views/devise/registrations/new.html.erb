@@ -23,6 +23,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+
+  <div class="field">
+    <%= f.label :company %><br />
+    <%= f.collection_select(:company_id, @companies, :id, :name, prompt: 'Escolha a empresa') %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit "Cadastrar" %>
   </div>

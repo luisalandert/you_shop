@@ -14,3 +14,5 @@ pt-BR:
         department: 'Departamento'
         email: 'Email'
         password: 'Senha'
+        company: 'Empresa'
+        company_id: 'Empresa'

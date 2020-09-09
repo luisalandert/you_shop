@@ -9,6 +9,7 @@ feature 'Visitor signs up' do
     fill_in 'Email', with: 'user@empresaum.com.br'
     fill_in 'Senha', with: 'abcd12'
     fill_in 'Confirme sua senha',	with: 'abcd12'
+    select 'Empresa Um', from: 'user_company_id'
     click_on 'Cadastrar'
 
     expect(page).to have_content 'Bem vindo! Você realizou seu registro com sucesso.'
@@ -27,6 +28,7 @@ feature 'Visitor signs up' do
     fill_in 'Email', with: 'user@empresaum.com.br'
     fill_in 'Senha', with: 'abcd12'
     fill_in 'Confirme sua senha',	with: 'abcd12'
+    select 'Empresa Um', from: 'user_company_id'
     click_on 'Cadastrar'
 
     expect(page).to have_content 'Bem vindo! Você realizou seu registro com sucesso.'
@@ -55,6 +57,7 @@ feature 'Visitor signs up' do
     click_on 'Cadastrar'
 
     expect(page).to have_content 'corporativo não encontrado, empresa deve estar cadastrada para completar seu registro!'
+    expect(page).to have_content 'Empresa é obrigatório(a)'
   end
 
   scenario 'default status must be incomplete' do
@@ -67,6 +70,7 @@ feature 'Visitor signs up' do
     fill_in 'Email', with: 'user@empresaum.com.br'
     fill_in 'Senha', with: 'abcd12'
     fill_in 'Confirme sua senha',	with: 'abcd12'
+    select 'Empresa Um', from: 'user_company_id'
     click_on 'Cadastrar'
 
     expect(User.last).to be_incomplete
