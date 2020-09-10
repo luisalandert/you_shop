@@ -1,11 +1,17 @@
 <%= render 'navbar' %>
 
-<h1>you Shop</h1>
-<p>Conecte-se com colaboradores de sua empresa para anunciar e encontrar produtos dos mais variados!</p>
-<p>Cadastre-se já!</p>
-<% if !user_signed_in? %>
+<% if user_signed_in? %>
+  <h1>Bem vindo ao youShop!</h1>
+
+  <%= link_to 'Anúncios de Produtos', products_path %>
+  <%= link_to 'Empresas Cadastradas', companies_path %>
+<% else %>
+  <h1>you Shop</h1>
+  <p>Conecte-se com colaboradores de sua empresa para anunciar e encontrar produtos dos mais variados!</p>
+  <p>Cadastre-se já!</p>
+
+  <%= link_to 'Empresas Cadastradas', companies_path %>
   <%= link_to 'Cadastro de Usuário', new_user_registration_path %>
-  <%= link_to 'Cadastro de Empresa', new_company_path %>
+  <%= link_to 'Cadastro de Empresa', new_company_path %> 
 <% end %>
-<%= link_to 'Empresas Cadastradas', companies_path %>
 

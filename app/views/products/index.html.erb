@@ -1,1 +1,15 @@
-lalala
+<%= render 'navbar' %>
+
+<%= link_to 'Voltar', root_path %>
+
+<h1><%= "Produtos de #{current_user.company.name}" %></h1>
+
+<%= 'Ainda não existem produtos cadastrados.' if @products.empty? %>
+
+<% @products.each do |product| %>
+    <div>
+        <p><%= product.name %></p>
+        <p><%= number_to_currency product.price %></p>
+        <p><%= "#{product.user.social_name} - #{product.user.department}" %></p>
+    </div>
+<% end %>

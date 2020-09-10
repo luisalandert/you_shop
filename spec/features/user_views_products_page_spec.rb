@@ -36,9 +36,9 @@ feature 'User views products page' do
     visit root_path
     click_on 'Produtos'
 
-    expect(page).to have_content('Produtos da Empresa Quatro')
+    expect(page).to have_content('Produtos de Empresa Quatro')
     expect(page).to have_content('Pães de mel')
-    expect(page).to have_content('R$5,00')
+    expect(page).to have_content('R$ 25,00')
     expect(page).to have_content('Patricia Andrade - Desenvolvimento', count: 2)
     expect(page).to have_content('Jaqueta jeans')
     expect(page).to have_content('Espelho decorado')
@@ -46,12 +46,22 @@ feature 'User views products page' do
     expect(page).not_to have_content('Chuteira')
 
   end
-  # TODO: criar partial com a página inicial depois de logado
   # TODO: adicionar imagem a produto!
-  end
+  
 
-  xscenario 'and there are no products' do
+  scenario 'and there are no products' do
+    company_four = Company.create!(name:'Empresa Quatro', cnpj: '65.943.509/7880-04', address: 'Av. Tucuruvi, 562, São Paulo, SP',
+                                   user_email: 'user@empresaquatro.com.br', email_domain: '@empresaquatro.com.br')
+    user_four = User.create!(email: 'patricia@empresaquatro.com.br', password:'abc123', full_name:'Patricia Andrade',
+                             social_name:'Patricia Andrade', birth_date:Date.parse('11/02/1980'),
+                             job_position: 'Tech Lead', department: 'Desenvolvimento', company: company_four,
+                             status: :complete)
 
+    login_as(user_four, scope: :user)
+    visit root_path
+    click_on 'Anúncios de Produtos'
+
+    expect(page).to have_content('Ainda não existem produtos cadastrados.')
   end
   
 end
