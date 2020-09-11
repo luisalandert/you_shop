@@ -32,6 +32,26 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :u
     end
   end
 
+  def edit
+    @product = Product.find(params[:id])
+    @categories = Category.all
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params) && current_user.complete?
+      redirect_to @product, alert: 'Produto atualizado com sucesso!'
+    else
+      if !current_user.complete?
+        redirect_to edit_user_path(current_user), alert: 'Complete seu perfil para poder registrar produtos.'
+      end
+      @product = Product.find(params[:id])
+      @categories = Category.all
+      flash[:alert] = 'Todos os campos devem estar preenchidos!'
+      render :edit
+    end
+  end
+
   private 
 
   def product_params

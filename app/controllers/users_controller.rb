@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @products = @user.products
   end
   def edit
     @user = User.find(params[:id])
@@ -18,7 +19,8 @@ class UsersController < ApplicationController
         redirect_to @user, alert: 'Perfil atualizado com sucesso! Atenção: para ter acesso a todos os recursos seu perfil deve estar completo!'
       end
     else
-      redirect_to root_path
+      @user = User.find(params[:id])
+      render :edit
     end
   end
 

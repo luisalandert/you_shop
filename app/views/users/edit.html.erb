@@ -4,6 +4,10 @@
 
 <h1>Atualização do Perfil</h1>
 
+<% @user.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+<% end %>
+
 <div>
 <%= form_with model: @user, local: true do |f| %>
   <div>

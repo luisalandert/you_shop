@@ -1,9 +1,10 @@
 <%= render 'navbar' %>
+<%= link_to 'Voltar', products_path %>
 
 <h1><%= @product.name %></h1>
 
 <% if @product.picture.attached? %>
-    <%= image_tag @product.picture %>
+    <%= image_tag @product.picture, class: 'product-picture' %>
 <% else %>
     <%= image_tag 'product_default2.png', class: 'product-default' %>
 <% end %>
@@ -15,6 +16,6 @@
 <h3><%= "#{Product.human_attribute_name :quantity}: #{@product.quantity}" %></h3>
 <h3><%= "Vendedor(a): #{@product.user.social_name} - #{@product.user.department}" %></h3>
 
-<% if current_user == @product.user %>
-<%= link_to 'Editar Anúncio' %>
+<% if current_user.id == @product.user.id %>
+<%= link_to 'Editar Anúncio', edit_product_path(@product) %>
 <% end %>
