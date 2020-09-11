@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-before_action :authenticate_user!, only:[:index, :show, :new, :create]
+before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :update]
 
   def index
     users = User.where(company: current_user.company)
@@ -18,11 +18,17 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create]
   def create
     @product = Product.new(product_params)
     @product.user = current_user
-    if @product.save
+    if @product.save && current_user.complete?
       redirect_to @product
     else
       @categories = Category.all
-      render :new
+      if !current_user.complete?
+        redirect_to edit_user_path(current_user), alert: 'Complete seu perfil para poder registrar produtos.'
+        return
+      else
+        render :new
+        return
+      end
     end
   end
 

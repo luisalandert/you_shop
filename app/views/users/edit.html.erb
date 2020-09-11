@@ -1,6 +1,8 @@
-<h1>Atualização do Perfil</h1>
+<%= render 'navbar' %>
 
 <%= link_to 'Voltar', @user %>
+
+<h1>Atualização do Perfil</h1>
 
 <div>
 <%= form_with model: @user, local: true do |f| %>
