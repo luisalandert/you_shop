@@ -17,5 +17,6 @@
 <h3><%= "Vendedor(a): #{@product.user.social_name} - #{@product.user.department}" %></h3>
 
 <% if current_user.id == @product.user.id %>
+<h3><%= "#{Product.human_attribute_name :status}: #{Product.human_attribute_name("status.#{@product.status}")}" %></h3>
 <%= link_to 'Editar Anúncio', edit_product_path(@product) %>
 <% end %>

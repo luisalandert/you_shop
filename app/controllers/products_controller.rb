@@ -3,11 +3,14 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :u
 
   def index
     users = User.where(company: current_user.company)
-    @products = Product.where(user: users)
+    @products = Product.where(user: users, status: :available)
   end
 
   def show
     @product = Product.find(params[:id])
+    if !@product.available? && (current_user.id != @product.user.id)
+      redirect_to products_path, alert: 'Produto indisponível!'
+    end
   end
   
   def new

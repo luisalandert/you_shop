@@ -12,6 +12,10 @@ pt-BR:
         not_informed: Não informado
         new_product: Novo
         used: Usado
+      product/status:
+        available: Disponível
+        unavailable: Indisponível
+        suspended: Suspenso
   date:
     abbr_day_names:
     - dom

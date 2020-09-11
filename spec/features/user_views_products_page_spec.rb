@@ -82,6 +82,29 @@ feature 'User views products page' do
 
     # expect(page).to have_css("img[src*='product_default2.png']")
     expect(page).to have_css('.product-default')
-end
+  end
+
+  scenario 'can only view available products' do
+    company_four = Company.create!(name:'Empresa Quatro', cnpj: '65.943.509/7880-04', address: 'Av. Tucuruvi, 562, São Paulo, SP',
+                                  user_email: 'user@empresaquatro.com.br', email_domain: '@empresaquatro.com.br')
+    user_four = User.create!(email: 'patricia@empresaquatro.com.br', password:'abc123', full_name:'Patricia Andrade',
+                            social_name:'Patricia Andrade', birth_date:Date.parse('11/02/1980'),
+                            job_position: 'Tech Lead', department: 'Desenvolvimento', company: company_four,
+                            status: :complete)
+    decoracao = Category.create!(name: 'Decoração')
+    vestuario = Category.create!(name: 'Vestuário')
+    Product.create!(name: 'Espelho decorado', description: 'Espelho decorado pintado à mão.',
+                    category: decoracao, quantity: 1, price: 30.00, condition: :new_product, user: user_four , status: :available)
+    Product.create!(name: 'Camiseta estampada', description: 'Camiseta pintada à mão.',
+                    category: vestuario, quantity: 1, price: 40.00, condition: :new_product, user: user_four , status: :unavailable)
+
+    login_as(user_four, scope: :user)
+    visit root_path
+    click_on 'Produtos'
+
+    expect(page).to have_content('Espelho decorado')
+    expect(page).not_to have_content('Camiseta estampada')
+  end
+
   
 end
