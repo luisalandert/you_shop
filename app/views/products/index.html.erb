@@ -8,6 +8,11 @@
 
 <% @products.each do |product| %>
     <div>
+        <% if product.picture.attached? %>
+            <%= image_tag product.picture %>
+        <% else %>
+            <%= image_tag 'product_default2.png', class: 'product-default' %>
+        <% end %>
         <p><%= product.name %></p>
         <p><%= number_to_currency product.price %></p>
         <p><%= "#{product.user.social_name} - #{product.user.department}" %></p>
