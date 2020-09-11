@@ -23,14 +23,17 @@ feature 'User views products page' do
                             social_name:'João da Silva', birth_date:Date.parse('15/05/1987'),
                             job_position: 'Advogado', department: 'Jurídico', company: company_one ,
                             status: :complete)
+    alimentos = Category.create!(name: 'Alimentos')
+    vestuario = Category.create!(name: 'Vestuário')
+    decoracao = Category.create!(name: 'Decoração')
     Product.create!(name: 'Pães de mel', description: 'Caixa com 6 pães de mel ao leite com licor de chocolate.',
-                    category: 'Alimentos', quantity: 5, price: 25.00, condition: 'New', user: user_four , status: :available)
+                    category: alimentos, quantity: 5, price: 25.00, condition: :new_product, user: user_four , status: :available)
     Product.create!(name: 'Jaqueta jeans', description: 'Jaqueta jeans Shoulder tamanho 40 em ótimo estado.',
-                    category: 'Vestuário', quantity: 1, price: 100.00, condition: 'Usada', user: user_four , status: :available)
+                    category: vestuario, quantity: 1, price: 100.00, condition: :used, user: user_four , status: :available)
     Product.create!(name: 'Espelho decorado', description: 'Espelho decorado pintado à mão.',
-                    category: 'Decoração', quantity: 1, price: 30.00, condition: 'Novo', user: another_user_four , status: :available)
+                    category: decoracao, quantity: 1, price: 30.00, condition: :new_product, user: another_user_four , status: :available)
     Product.create!(name: 'Chuteira', description: 'Chuteira Nike tamanho 38, usada poucas vezes.',
-                    category: 'Vestuário', quantity: 1, price: 50.00 , condition: 'Usada', user: user_one, status: :available)
+                    category: vestuario, quantity: 1, price: 50.00 , condition: :used, user: user_one, status: :available)
     
     login_as(user_four, scope: :user)
     visit root_path
@@ -69,8 +72,9 @@ feature 'User views products page' do
                              social_name:'Patricia Andrade', birth_date:Date.parse('11/02/1980'),
                              job_position: 'Tech Lead', department: 'Desenvolvimento', company: company_four,
                              status: :complete)
+    decoracao = Category.create!(name: 'Decoração')
     Product.create!(name: 'Espelho decorado', description: 'Espelho decorado pintado à mão.',
-                    category: 'Decoração', quantity: 1, price: 30.00, condition: 'Novo', user: user_four , status: :available)
+                    category: decoracao, quantity: 1, price: 30.00, condition: :new_product, user: user_four , status: :available)
 
     login_as(user_four, scope: :user)
     visit root_path

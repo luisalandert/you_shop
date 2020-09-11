@@ -10,10 +10,10 @@
 
 <h3><%= @product.description %></h3>
 <h3><%= number_to_currency @product.price %></h3>
-<h3><%= "#{Product.human_attribute_name :category}: #{@product.category}" %></h3>
-<h3><%= "#{Product.human_attribute_name :condition}: #{@product.condition}" %></h3>
+<h3><%= "#{Product.human_attribute_name :category}: #{@product.category.name}" %></h3>
+<h3><%= "#{Product.human_attribute_name :condition}: #{Product.human_attribute_name("condition.#{@product.condition}")}" %></h3>
 <h3><%= "#{Product.human_attribute_name :quantity}: #{@product.quantity}" %></h3>
-<h3><%= "Vendedor: #{@product.user.social_name} - #{@product.user.department}" %></h3>
+<h3><%= "Vendedor(a): #{@product.user.social_name} - #{@product.user.department}" %></h3>
 
 <% if current_user == @product.user %>
 <%= link_to 'Editar Anúncio' %>

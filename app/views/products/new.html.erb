@@ -1,0 +1,41 @@
+<%= render 'navbar' %>
+
+<% @product.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+<% end %>
+
+<h1>Cadastrar novo produto</h1>
+
+<div>
+  <%= form_with model: @product, local: true do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+    <div>
+      <%= f.label :category %><br />
+      <%= f.collection_select(:category_id, @categories, :id, :name, prompt: 'Escolha a categoria') %>
+    </div>
+    <div>
+      <%= f.label :price %>
+      <%= f.number_field :price %>
+    </div>
+    <div>
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity %>
+    </div>
+    <div>
+      <%= f.label :condition %>
+      <%= f.select(:condition, options_for_select([['Novo', :new_product], ['Usado', :used]]))%>
+    </div>
+    <div>
+      <%= f.label :picture %>
+      <%= f.file_field :picture %>
+    </div>
+    <%= f.submit 'Enviar' %>
+  <% end %>
+</div>

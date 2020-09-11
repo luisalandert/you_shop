@@ -49,7 +49,6 @@ feature 'User logs in' do
     fill_in 'Senha', with: user.password
     click_on 'Entrar'
 
-    expect(page).not_to have_content('Cadastrar')
     expect(page).not_to have_content('Cadastro de Usuário')
     expect(page).not_to have_content('Cadastro de Empresa')
   end

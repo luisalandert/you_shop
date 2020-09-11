@@ -1,5 +1,7 @@
 <nav>
+  <%= link_to 'Home', root_path %>
 <% if user_signed_in? %>
+  <%= link_to 'Cadastrar Produto', new_product_path %>
   <%= link_to 'Produtos', products_path %>
   <% if current_user.social_name.blank? %>
     <%= link_to 'Perfil', user_path(current_user.id) %>

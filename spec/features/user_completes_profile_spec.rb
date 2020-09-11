@@ -1,4 +1,9 @@
 feature 'User completes profile' do
+  scenario 'must be signed in' do
+    visit user_path(1)
+    expect(page).to have_content('Para continuar, faça login ou registre-se.')
+  end
+  
   scenario 'successfully' do
     company = Company.create!(name: 'Empresa Dois', cnpj: '08.262.335/7251-10', address: 'Rua Direita, 78',
                               user_email: 'usuario@empresadois.com.br', email_domain: '@empresadois.com.br')
