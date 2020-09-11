@@ -1,0 +1,20 @@
+<%= render 'navbar' %>
+
+<h1><%= @product.name %></h1>
+
+<% if @product.picture.attached? %>
+    <%= image_tag @product.picture %>
+<% else %>
+    <%= image_tag 'product_default2.png', class: 'product-default' %>
+<% end %>
+
+<h3><%= @product.description %></h3>
+<h3><%= number_to_currency @product.price %></h3>
+<h3><%= "#{Product.human_attribute_name :category}: #{@product.category}" %></h3>
+<h3><%= "#{Product.human_attribute_name :condition}: #{@product.condition}" %></h3>
+<h3><%= "#{Product.human_attribute_name :quantity}: #{@product.quantity}" %></h3>
+<h3><%= "Vendedor: #{@product.user.social_name} - #{@product.user.department}" %></h3>
+
+<% if current_user == @product.user %>
+<%= link_to 'Editar Anúncio' %>
+<% end %>

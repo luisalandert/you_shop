@@ -13,8 +13,8 @@
         <% else %>
             <%= image_tag 'product_default2.png', class: 'product-default' %>
         <% end %>
-        <p><%= product.name %></p>
-        <p><%= number_to_currency product.price %></p>
+        <%= link_to product.name, product %>
+        <p><%= number_to_currency product.price, class: 'product-picture' %></>
         <p><%= "#{product.user.social_name} - #{product.user.department}" %></p>
     </div>
 <% end %>
