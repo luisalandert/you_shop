@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   resources :products, only: [:index, :show, :new, :create, :edit, :update] do
     resources :comments, only: [:create]
-    resources :messages, only: [:index, :show]
+    resources :messages, only: [:new, :create]
     get 'search', on: :collection
   end
 end

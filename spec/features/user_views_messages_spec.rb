@@ -57,17 +57,17 @@ feature 'Seller views messages' do
     message_three = Message.create!(content: 'Você tem sabor brigadeiro pra amanhã?',
                                     sender: buyer_two, recipient: seller, product: product)
 
-login_as(buyer_two, scope: :user)
-visit root_path
-click_on 'Produtos'
-click_on 'Pães de mel'
+    login_as(buyer_two, scope: :user)
+    visit root_path
+    click_on 'Produtos'
+    click_on 'Pães de mel'
 
-expect(page).to have_content('Mensagens Privadas')
-expect(page).to have_content('Você:')
-expect(page).to have_content(message_three.content)
-expect(page).not_to have_content('Patricia Andrade:')
-expect(page).not_to have_content(message_two.content)
-expect(page).not_to have_content('Ana Pacheco:')
-expect(page).not_to have_content(message_one.content)
+    expect(page).to have_content('Mensagens Privadas')
+    expect(page).to have_content('Você:')
+    expect(page).to have_content(message_three.content)
+    expect(page).not_to have_content('Patricia Andrade:')
+    expect(page).not_to have_content(message_two.content)
+    expect(page).not_to have_content('Ana Pacheco:')
+    expect(page).not_to have_content(message_one.content)
   end
 end

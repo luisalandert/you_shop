@@ -60,7 +60,6 @@
     <% end %>
   <% end %>
 <% elsif !@messages.empty? %>
-
   <% @available_messages.each do |message| %>
     <dl>
       <% if message.sender == current_user %>
@@ -72,4 +71,13 @@
       <% end %>
     </dl>
   <% end %>
+  <div>
+    <%= form_with model: @message, url: product_messages_path(@product), local: true do |f| %>
+      <div>
+      <p><%= f.label 'Mensagem' %></p>
+      <p><%= f.text_area :content, class: 'mensagem_text'  %></p>
+      </div>
+      <p><%= f.submit 'Enviar Mensagem' %></p>
+    <% end %>
+  </div>
 <% end %>

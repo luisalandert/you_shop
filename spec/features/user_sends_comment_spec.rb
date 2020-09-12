@@ -1,4 +1,4 @@
-feature 'User comments on product page' do
+feature 'User sends comment on product page' do
   xscenario 'successfully' do
     company_four = Company.create!(name:'Empresa Quatro', cnpj: '65.943.509/7880-04', address: 'Av. Tucuruvi, 562, São Paulo, SP',
                                    user_email: 'user@empresaquatro.com.br', email_domain: '@empresaquatro.com.br')
