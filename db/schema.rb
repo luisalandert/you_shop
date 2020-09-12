@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_042147) do
+ActiveRecord::Schema.define(version: 2020_09_12_154734) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,12 +74,14 @@ ActiveRecord::Schema.define(version: 2020_09_12_042147) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
-    t.integer "user_id", null: false
     t.integer "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.index ["product_id"], name: "index_messages_on_product_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["recipient_id"], name: "index_messages_on_recipient_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -121,7 +123,8 @@ ActiveRecord::Schema.define(version: 2020_09_12_042147) do
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
   add_foreign_key "messages", "products"
-  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "users", column: "recipient_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
   add_foreign_key "users", "companies"
