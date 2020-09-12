@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :category
   has_one_attached :picture
   has_many :comments
+  has_many :messages
   # before_create :set_user
   
   validates :name, :description, :quantity, :price,
