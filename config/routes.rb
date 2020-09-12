@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :companies, only: [:index, :show, :new, :create]
   resources :users, only: [:show, :edit, :update]
-  resources :products, only: [:index, :show, :new, :create, :edit, :update]
+  resources :products, only: [:index, :show, :new, :create, :edit, :update] do
+    get 'search', on: :collection
+  end
 end

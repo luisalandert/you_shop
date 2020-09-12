@@ -55,6 +55,13 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :u
     end
   end
 
+  def search
+    users = User.where(company: current_user.company)
+    all_products = Product.where(user: users, status: :available)
+    @products = all_products.where('name LIKE ?', "%#{params[:q]}%")
+    render :index
+  end
+
   private 
 
   def product_params

@@ -3,6 +3,12 @@
 <%= link_to 'Voltar', root_path %>
 
 <h1><%= "Produtos de #{current_user.company.name}" %></h1>
+<%= form_with url: search_products_path, method: :get, local: true do |f| %>
+    <%= f.label :q, 'Busca' %>
+    <%= f.text_field :q %>
+    <%= f.submit 'Buscar' %>
+
+<% end %>
 
 <%= 'Ainda não existem produtos cadastrados.' if @products.empty? %>
 
