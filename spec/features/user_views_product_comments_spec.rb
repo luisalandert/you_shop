@@ -45,7 +45,10 @@ feature 'User views product comments' do
     visit products_path
     click_on 'Pães de mel'
 
-    expect(page).to have_link('Patricia Andrade (Vendedor(a)')
+    expect(page).to have_link('Patricia Andrade (Vendedor(a)):')
     expect(page).to have_content('O pão de mel é recheado com brigadeiro.')
+  end
+
+  xscenario 'and views owns comments on profile page' do
   end
 end

@@ -12,6 +12,7 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :u
       redirect_to products_path, alert: 'Produto indisponível!'
     end
     @comments = Comment.where(product: @product)
+    @comment = Comment.new
   end
   
   def new

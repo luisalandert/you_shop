@@ -14,11 +14,13 @@ feature 'User comments on product page' do
     Product.create!(name: 'Pães de mel', description: 'Caixa com 6 pães de mel ao leite com licor de chocolate.',
                     category: alimentos, quantity: 5, price: 25.00, condition: :new_product, user: user_four , status: :available)
     
-  end
+    login_as(another_user_four, scope: :user)
+    visit products_path(1)
+    fill_in 'comment_content', with: 'Os pães de mel são recheados?'
+    click_on 'Enviar Comentário'
+    # TODO: capybara não reconhece o campo do comentario
 
-  xscenario 'and content cannot be blank' do
-  end
-
-  xscenario 'and views owns comments on profile page' do
+    expect(page).to have_content('Ana Pacheco:')
+    expect(page).to have_content('Os pães de mel são recheados?')
   end
 end

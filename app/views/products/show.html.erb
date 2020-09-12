@@ -14,7 +14,7 @@
 <h3><%= "#{Product.human_attribute_name :category}: #{@product.category.name}" %></h3>
 <h3><%= "#{Product.human_attribute_name :condition}: #{Product.human_attribute_name("condition.#{@product.condition}")}" %></h3>
 <h3><%= "#{Product.human_attribute_name :quantity}: #{@product.quantity}" %></h3>
-<h3><%= "Vendedor(a): #{@product.user.social_name} - #{@product.user.department}" %></h3>
+<%= link_to "Vendedor(a): #{@product.user.social_name} - #{@product.user.department}", @product.user %>
 
 <% if current_user.id == @product.user.id %>
 <h3><%= "#{Product.human_attribute_name :status}: #{Product.human_attribute_name("status.#{@product.status}")}" %></h3>
@@ -22,13 +22,17 @@
 <% end %>
 
 <%= 'Não existem comentários.' if @comments.empty? %>
-<% @comments.each do |comment| %>
+<% @comments.reverse_each do |comment| %>
     <% if comment.user.id == current_user.id %>
-        <p><%= link_to "#{comment.user.social_name} (Vendedor(a))", comment.user %></p>
+        <p><%= link_to "#{comment.user.social_name} (Vendedor(a)):", comment.user %></p>
     <% else %>
-        <p><%= link_to comment.user.social_name, comment.user %></p>
+        <p><%= link_to "#{comment.user.social_name}:", comment.user %></p>
     <% end %>
     <p><%= comment.content %></p>
-
 <% end %>
 
+<%= form_with model: @comment, url: product_comments_path(@product), local: true do |f| %>
+    <p><%= f.label 'Comentário' %></p>
+    <p><%= f.text_area :content %></p>
+    <p><%= f.submit 'Enviar Comentário' %></p>
+<% end %>

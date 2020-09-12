@@ -21,6 +21,6 @@
         <% end %>
         <p><%= link_to product.name, product %></p>
         <p><%= number_to_currency product.price %></p>
-        <p><%= "#{product.user.social_name} - #{product.user.department}" %></p>
+        <%= link_to "#{product.user.social_name} - #{product.user.department}", product.user %>
     </div>
 <% end %>

@@ -2,16 +2,19 @@
 
 <%= link_to 'Voltar', root_path %>
 
-<h1>Dados Pessoais</h1>
+  <h1>Dados do Usuário</h1>
 
-<h2><%= @user.social_name %></h2>
-<h3><%= @user.full_name %></h3>
-<h3><%= l @user.birth_date, default: '' %></h3>
-<h3><%= @user.job_position %></h3>
-<h3><%= @user.department %></h3>
+  <h2><%= @user.social_name %></h2>
+  <h3><%= @user.job_position %></h3>
+  <h3><%= @user.department %></h3>
 
-<%= link_to 'Editar Dados', edit_user_path %>
-<%= link_to 'Trocar Senha', edit_user_registration_path %>
+<% if current_user.id == @user.id %>
+  <h3><%= @user.full_name %></h3>
+  <h3><%= l @user.birth_date, default: '' %></h3>
+
+  <%= link_to 'Editar Dados', edit_user_path %>
+  <%= link_to 'Trocar Senha', edit_user_registration_path %>
+<% end %>
 
 <h1>Produtos Anunciados</h1>
 
