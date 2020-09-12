@@ -11,8 +11,28 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :u
     if !@product.available? && (current_user.id != @product.user.id)
       redirect_to products_path, alert: 'Produto indisponível!'
     end
+
     @comments = Comment.where(product: @product)
     @comment = Comment.new
+
+    @messages = @product.messages
+    if !@messages.empty?
+      @users = []
+      @messages.each do |m|
+        if m.sender.id != @product.user.id
+          @users << m.sender
+        end
+      end
+      @users.uniq!
+      if current_user.id == @product.user.id
+        @available_messages = @messages
+      else
+        sent_messages = @messages.where(sender: current_user)
+        received_messages = @messages.where(sender: @product.user)
+        # @available_messages = (sent_messages + received_messages).order_by(&:created_at)
+        @available_messages = sent_messages.merge(received_messages).order(created_at: :desc)
+      end
+    end
   end
   
   def new

@@ -21,18 +21,44 @@
 <%= link_to 'Editar Anúncio', edit_product_path(@product) %>
 <% end %>
 
+<h2>Comentários</h2>
 <%= 'Não existem comentários.' if @comments.empty? %>
-<% @comments.reverse_each do |comment| %>
-    <% if comment.user.id == current_user.id %>
-        <p><%= link_to "#{comment.user.social_name} (Vendedor(a)):", comment.user %></p>
-    <% else %>
-        <p><%= link_to "#{comment.user.social_name}:", comment.user %></p>
-    <% end %>
-    <p><%= comment.content %></p>
+<% @comments.each do |comment| %>
+  <% if comment.user.id == @product.user.id %>
+      <p><%= link_to "#{comment.user.social_name} (Vendedor(a)):", comment.user %></p>
+  <% else %>
+      <p><%= link_to "#{comment.user.social_name}:", comment.user %></p>
+  <% end %>
+  <p><%= comment.content %></p>
 <% end %>
 
 <%= form_with model: @comment, url: product_comments_path(@product), local: true do |f| %>
-    <p><%= f.label 'Comentário' %></p>
-    <p><%= f.text_area :content %></p>
-    <p><%= f.submit 'Enviar Comentário' %></p>
+  <p><%= f.label 'Comentário' %></p>
+  <p><%= f.text_area :content %></p>
+  <p><%= f.submit 'Enviar Comentário' %></p>
+<% end %>
+
+<h2>Mensagens Privadas</h2>
+<p>As mensagens privadas só são visíveis para você e para o comprador.</p>
+
+<% if current_user.id == @product.user.id && !@messages.empty? %>
+  <% @users.each do |user| %>
+    <%= link_to user.social_name, user_path(user.id) if user != current_user %>
+    <% received_messages = @messages.where(sender: user) %>
+    <% sent_messages = @messages.where(sender: current_user, recipient: user) %>
+    <% user_messages = (received_messages + sent_messages).sort_by { |obj| obj.created_at }%> 
+    <% user_messages.each do |message| %>
+      <dl>
+        <% if message.sender == current_user %>
+          <dt><%= 'Você:' %></dt>
+          <dd><%= message.content %></dd>
+        <% else %>
+          <dt><%= "#{message.sender.social_name}:" %></dt>
+          <dd><%= message.content %></dd>
+        <% end %>
+      </dl>
+    <% end %>
+  <% end %>
+<% elsif !@messages.empty? %>
+  
 <% end %>

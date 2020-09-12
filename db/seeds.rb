@@ -8,15 +8,18 @@ company_two = Company.create!(name:'Empresa Dois', cnpj: '54.892.878/0981-67', a
                 user_email: 'user@empresadois.com', email_domain: '@empresadois.com')
 
 # Usuários
-user_two = User.create!(email: 'heitorp@empresaum.com', password:'abc123', full_name:'Heitor Penteado',
-                        social_name:'Heitor Penteado', birth_date:Date.parse('10/06/1975'),
-                        job_position: 'Engenheiro de Dados', department: 'Business Inteligence', company: company_one,
-                        status: :complete)
 user_one = User.create!(email: 'patricia@empresaum.com', password:'abc123', full_name:'Patricia Andrade',
                         social_name:'Patricia Andrade', birth_date:Date.parse('11/02/1980'),
                         job_position: 'Tech Lead', department: 'Desenvolvimento', company: company_one,
                         status: :complete)
-
+user_two = User.create!(email: 'heitorp@empresaum.com', password:'abc123', full_name:'Heitor Penteado',
+                        social_name:'Heitor Penteado', birth_date:Date.parse('10/06/1975'),
+                        job_position: 'Engenheiro de Dados', department: 'Business Inteligence', company: company_one,
+                        status: :complete)
+user_three = User.create!(email: 'joaquimp@empresaum.com', password:'abc123', full_name:'Joaquim Queiroga',
+                         social_name:'Joaquim Queiroga', birth_date:Date.parse('15/09/1970'),
+                         job_position: 'Advogado', department: 'Jurídico', company: company_one,
+                         status: :complete)
 another_user = User.create!(email: 'tereza.q@empresadois.com', password:'abc123', full_name:'Tereza Queiroz',
                             social_name:'Tereza Queiroz', birth_date:Date.parse('11/11/1999'),
                             job_position: 'Estagiária', department: 'Desenvolvimento', company: company_two ,
@@ -65,3 +68,13 @@ comment_four = Comment.create!(content: 'Você aceita encomendas maiores? Queria
                                user: user_one, product: product_six)
 
 # Mensagens privadas
+message_one = Message.create!(content: 'Boa Tarde Patricia, eu gostaria de comprar 2 caixas do pão de mel de brigadeiro para essa sexta. Você tem conta no banco x?',
+                              sender: user_two, recipient: user_one, product: product_one)
+message_two = Message.create!(content: 'Oi Heitor! Eu posso te entregar na sexta sim, tenho conta no banco x e y.',
+                              sender: user_one, recipient: user_two, product: product_one)
+message_three = Message.create!(content: 'Você quer receber que horas?.',
+                              sender: user_one, recipient: user_two, product: product_one)
+message_four = Message.create!(content: 'Pode ser na hora do almoço?',
+                              sender: user_two, recipient: user_one, product: product_one)
+message_five = Message.create!(content: 'Você faz sabores diferentes por encomenda? Por exemplo recheio de café?',
+                               sender: user_three, recipient: user_one, product: product_one)
