@@ -11,6 +11,7 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :u
     if !@product.available? && (current_user.id != @product.user.id)
       redirect_to products_path, alert: 'Produto indisponível!'
     end
+    @comments = Comment.where(product: @product)
   end
   
   def new

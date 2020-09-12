@@ -20,3 +20,15 @@
 <h3><%= "#{Product.human_attribute_name :status}: #{Product.human_attribute_name("status.#{@product.status}")}" %></h3>
 <%= link_to 'Editar Anúncio', edit_product_path(@product) %>
 <% end %>
+
+<%= 'Não existem comentários.' if @comments.empty? %>
+<% @comments.each do |comment| %>
+    <% if comment.user.id == current_user.id %>
+        <p><%= link_to "#{comment.user.social_name} (Vendedor(a))", comment.user %></p>
+    <% else %>
+        <p><%= link_to comment.user.social_name, comment.user %></p>
+    <% end %>
+    <p><%= comment.content %></p>
+
+<% end %>
+
