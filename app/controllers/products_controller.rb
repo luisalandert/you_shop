@@ -28,9 +28,8 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :u
         @available_messages = @messages
       else
         sent_messages = @messages.where(sender: current_user)
-        received_messages = @messages.where(sender: @product.user)
-        # @available_messages = (sent_messages + received_messages).order_by(&:created_at)
-        @available_messages = sent_messages.merge(received_messages).order(created_at: :desc)
+        received_messages = @messages.where(sender: @product.user, recipient: current_user)
+        @available_messages = (received_messages + sent_messages).sort_by { |obj| obj.created_at }
       end
     end
   end

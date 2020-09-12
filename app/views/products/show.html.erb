@@ -60,5 +60,16 @@
     <% end %>
   <% end %>
 <% elsif !@messages.empty? %>
-  
+
+  <% @available_messages.each do |message| %>
+    <dl>
+      <% if message.sender == current_user %>
+        <dt><%= 'Você:' %></dt>
+        <dd><%= message.content %></dd>
+      <% else %>
+        <dt><%= "#{message.sender.social_name}:" %></dt>
+        <dd><%= message.content %></dd>
+      <% end %>
+    </dl>
+  <% end %>
 <% end %>
