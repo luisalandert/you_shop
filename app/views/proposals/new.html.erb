@@ -1,0 +1,25 @@
+<%= render 'navbar' %>
+
+<h1>Proposta</h1>
+
+<% @proposal.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+<% end %>
+
+<div>
+  <%= form_with model: @proposal, local: true do |f| %>
+    <div>
+      <%= f.label :product %>
+      <%= f.collection_select(:product_id, @products, :id, :info, prompt: 'Escolha o produto') %>
+    </div>
+    <div>
+      <%= f.label :proposed_price %>
+      <%= f.number_field :proposed_price %>
+    </div>
+    <div>
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity %>
+    </div>
+    <%= f.submit 'Enviar Proposta' %>
+  <% end %>
+</div>

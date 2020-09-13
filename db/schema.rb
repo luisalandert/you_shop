@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_154734) do
+ActiveRecord::Schema.define(version: 2020_09_13_003037) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -99,6 +99,19 @@ ActiveRecord::Schema.define(version: 2020_09_12_154734) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "buyer_id", null: false
+    t.integer "seller_id", null: false
+    t.integer "quantity"
+    t.decimal "proposed_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_proposals_on_buyer_id"
+    t.index ["product_id"], name: "index_proposals_on_product_id"
+    t.index ["seller_id"], name: "index_proposals_on_seller_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -127,5 +140,8 @@ ActiveRecord::Schema.define(version: 2020_09_12_154734) do
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
+  add_foreign_key "proposals", "products"
+  add_foreign_key "proposals", "users", column: "buyer_id"
+  add_foreign_key "proposals", "users", column: "seller_id"
   add_foreign_key "users", "companies"
 end

@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      message:
+        one: 'Mensagem'
+        other: 'Mensagens'
+    attributes:
+      message:
+        content: 'Conteúdo'
+        product: 'Produto'
+        product_id: 'Produto'
+        sender: 'Remetente'
+        sender_id: 'Remetente'
+        recipient: 'Destinatário'
+        recipient_id: 'Destinatário'

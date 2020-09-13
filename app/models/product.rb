@@ -4,7 +4,6 @@ class Product < ApplicationRecord
   has_one_attached :picture
   has_many :comments
   has_many :messages
-  # before_create :set_user
   
   validates :name, :description, :quantity, :price,
             presence: true
@@ -12,9 +11,9 @@ class Product < ApplicationRecord
   enum status: { available: 0, unavailable: 10, suspended: 20 }
   enum condition: { not_informed: 0, new_product: 10, used: 20 }
 
-  private
-
-  # def set_user
-  #   self.user = current_user
-  # end
+  def info
+    price_currency = price.to_s
+    price_currency['.']= ','
+    return "#{name} - #{user.social_name} - R$ #{price_currency + '0'}"
+  end
 end

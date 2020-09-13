@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create]
     get 'search', on: :collection
   end
+  resources :proposals, only: [:index, :show, :new, :create]
 end

@@ -1,0 +1,17 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      proposal:
+        one: Proposta
+        other: Propostas
+    attributes:
+      proposal:
+        product: Produto
+        product_id: Produto
+        proposed_price: Preço Proposto
+        quantity: Quantidade
+        buyer: Comprador
+        buyer_id: Comprador
+        seller: Vendedor
+        seller_id: Vendedor

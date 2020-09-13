@@ -21,6 +21,8 @@
 <%= link_to 'Editar Anúncio', edit_product_path(@product) %>
 <% end %>
 
+<%= link_to 'Fazer Proposta', new_proposal_path %>
+
 <h2>Comentários</h2>
 <%= 'Não existem comentários.' if @comments.empty? %>
 <% @comments.each do |comment| %>
