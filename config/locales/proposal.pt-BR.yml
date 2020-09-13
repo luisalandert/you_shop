@@ -15,3 +15,4 @@ pt-BR:
         buyer_id: Comprador
         seller: Vendedor
         seller_id: Vendedor
+        status: Status

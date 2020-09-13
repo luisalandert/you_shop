@@ -16,6 +16,11 @@ pt-BR:
         available: Disponível
         unavailable: Indisponível
         suspended: Suspenso
+      proposals/status:
+        waiting: Aguardando resposta
+        denied: Negadoa
+        cancelled: Cancelada
+        approved: Aprovada
   date:
     abbr_day_names:
     - dom

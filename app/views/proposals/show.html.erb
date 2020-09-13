@@ -13,4 +13,6 @@
   <dd><%= @proposal.quantity %></dd>
   <dt><%= Proposal.human_attribute_name :seller %></dt>
   <dd><%= link_to @proposal.seller.social_name, user_path(@proposal.seller.id) %></dd>
+  <dt><%= Proposal.human_attribute_name :status %></dt>
+  <dd><%= Proposal.human_attribute_name( "status.#{@proposal.status}")%></dd>
 </dl>
