@@ -16,7 +16,7 @@ pt-BR:
         available: Disponível
         unavailable: Indisponível
         suspended: Suspenso
-      proposals/status:
+      proposal/status:
         waiting: Aguardando resposta
         denied: Negadoa
         cancelled: Cancelada

@@ -1,4 +1,16 @@
 class ProposalsController < ApplicationController
+  
+  def index
+  end
+
+  def received
+    @proposals = current_user.received_proposals
+  end
+
+  def sent
+    @proposals = current_user.sent_proposals
+  end
+  
   def show
     @proposal = Proposal.find(params[:id])
   end

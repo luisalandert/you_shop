@@ -1,0 +1,7 @@
+<%= render 'navbar' %>
+<%= link_to 'Voltar', user_path(current_user.id) %>
+
+<h1>Propostas</h1>
+
+<p><%= link_to 'Recebidas', received_proposals_path %></p>
+<p><%= link_to 'Enviadas', sent_proposals_path %></p>

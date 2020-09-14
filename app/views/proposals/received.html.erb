@@ -1,0 +1,10 @@
+<%= render 'navbar' %>
+<%= link_to 'Voltar', proposals_path %>
+
+<h1>Propostas Recebidas</h1>
+
+<%= 'Nenhuma proposta recebida.' if @proposals.empty? %>
+
+<% @proposals.each do |proposal| %>
+    <%= link_to proposal.description(proposal.buyer), proposal %>
+<% end %>
