@@ -21,14 +21,14 @@
 <%= link_to 'Editar Anúncio', edit_product_path(@product) %>
 <% end %>
 
-<% if current_user.id =! @product.user.id %>
-  <%= link_to 'Fazer Proposta', new_proposal_path %>
-<% else %>
+<% if current_user.email == @product.user.email %>
   <% if @product.available? %>
     <%= link_to 'Suspender Anúncio', suspend_product_path(@product.id), method: :post %>
   <% else %>
     <%= link_to 'Ativar Anúncio', activate_product_path(@product.id), method: :post %>
   <% end %>
+<% else %>
+  <%= link_to 'Fazer Proposta', new_proposal_path %>
 <% end %>
 
 <h2>Comentários</h2>

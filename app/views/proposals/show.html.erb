@@ -1,4 +1,5 @@
 <%= render 'navbar' %>
+<%= link_to 'Voltar', proposals_path %>
 
 <h1>Proposta</h1>
 
@@ -18,8 +19,10 @@
 </dl>
 
 <% if current_user.email == @proposal.seller.email %>
-  <p><%= link_to 'Aceitar', accept_proposal_path(@proposal), method: :post %></p>
-  <p><%= link_to 'Rejeitar', deny_proposal_path(@proposal), method: :post %></p>
+  <% if @proposal.waiting? %>
+    <p><%= link_to 'Aceitar', accept_proposal_path(@proposal), method: :post %></p>
+    <p><%= link_to 'Rejeitar', deny_proposal_path(@proposal), method: :post %></p>
+  <% end %>
 <% else %>
   <p><%= link_to 'Cancelar', cancel_proposal_path(@proposal), method: :post %></p>
 <% end %>

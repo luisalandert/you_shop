@@ -78,3 +78,9 @@ message_four = Message.create!(content: 'Pode ser na hora do almoço?',
                               sender: user_two, recipient: user_one, product: product_one)
 message_five = Message.create!(content: 'Você faz sabores diferentes por encomenda? Por exemplo recheio de café?',
                                sender: user_three, recipient: user_one, product: product_one)
+
+# Propostas
+proposal_one = Proposal.create!(product: product_one, buyer: user_two, seller: user_one, proposed_price: 25, quantity: 2)
+proposal_two = Proposal.create!(product: product_six, buyer: user_three, seller: user_two, proposed_price: 15, quantity: 1)
+proposal_three = Proposal.create!(product: product_two, buyer: user_three, seller: user_one, proposed_price: 80, quantity: 1)
+proposal_four = Proposal.create!(product: product_five, buyer: user_one, seller: user_two, proposed_price: 10, quantity: 2)

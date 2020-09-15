@@ -50,10 +50,19 @@ class ProposalsController < ApplicationController
 
   def accept
     proposal = Proposal.find(params[:id])
-    proposal.approved!
-    invoice = Invoice.new(proposal: proposal, seller: proposal.seller, buyer: proposal.buyer, issue_date: Time.zone.now)
-    if invoice.save
-      redirect_to invoice_path(invoice), notice: 'Venda finalizada com sucesso!'
+    remaining_quantity = proposal.product.quantity - proposal.quantity
+    if remaining_quantity >= 0
+      Product.find(proposal.product.id).update(quantity: remaining_quantity)
+      if Product.find(proposal.product.id).quantity == 0
+        Product.find(proposal.product.id).unavailable!
+      end
+      proposal.approved!
+      invoice = Invoice.new(proposal: proposal, seller: proposal.seller, buyer: proposal.buyer, issue_date: Time.zone.now)
+      if invoice.save
+        redirect_to invoice_path(invoice), notice: 'Venda finalizada com sucesso!'
+      end
+    else
+      redirect_to proposal, alert: 'Produto com quantidade insuficiente para aceitar a proposta!'
     end
   end
 
