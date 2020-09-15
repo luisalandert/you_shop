@@ -83,6 +83,18 @@ before_action :authenticate_user!, only:[:index, :show, :new, :create, :edit, :u
     render :index
   end
 
+  def suspend
+    product = Product.find(params[:id])
+    product.suspended!
+    redirect_to product_path(product.id), notice: 'Produto suspenso!'
+  end
+
+  def activate
+    product = Product.find(params[:id])
+    product.available!
+    redirect_to product_path(product.id), notice: 'Produto ativado!'
+  end
+
   private 
 
   def product_params

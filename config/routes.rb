@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     resources :messages, only: [:new, :create]
     get 'search', on: :collection
+    post 'suspend', on: :member
+    post 'activate', on: :member
   end
   resources :proposals, only: [:index, :show, :new, :create] do
     get 'received', on: :collection
