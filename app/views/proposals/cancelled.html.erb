@@ -1,6 +1,8 @@
 <%= render 'navbar' %>
 <%= link_to 'Voltar', received_proposals_path %>
 
+<%= 'Nenhuma proposta cancelada.' if @proposals.empty? %>
+
 <% @proposals.each do |proposal| %>
     <p><%= link_to proposal.description(proposal.seller), proposal %></p>
 <% end %>

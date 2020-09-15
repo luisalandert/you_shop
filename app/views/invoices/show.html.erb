@@ -1,0 +1,23 @@
+<%= render 'navbar' %>
+<%= link_to 'Voltar', invoices_path %>
+
+<h1><%= "Pedido #{@invoice.token}" %></h1>
+
+<dl>
+    <dt>Produto:</dt>
+    <dd><%= @invoice.proposal.product.name %></dd>
+    <dt>Quantidade:</dt>
+    <dd><%= @invoice.proposal.quantity %></dd>
+    <dt>Valor Unitário:</dt>
+    <dd><%= number_to_currency @invoice.proposal.proposed_price %></dd>
+</dl>
+<dl>
+    <dt>Vendedor:</dt>
+    <dd><%= @invoice.seller.social_name %></dd>
+    <dt>Comprador:</dt>
+    <dd><%= @invoice.buyer.social_name %></dd>
+    <dt>Data da compra:</dt>
+    <dd><%= l @invoice.issue_date %></dd>
+    <dt>Total:</dt>
+    <dd><%= number_to_currency @invoice.amount_due %></dd>
+</dl>

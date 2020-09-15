@@ -3,6 +3,8 @@
 
 <h1>Recibos Enviados</h1>
 
+<%= 'Nenhum recido encontrado.' if @sent_invoices.empty? %>
+
 <% @sent_invoices.each do |invoice| %>
     <%= link_to invoice.description(invoice.buyer), invoice %>
 <% end %>
