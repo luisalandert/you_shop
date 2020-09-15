@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      comment:
+        one: Comentário
+        other: Comentários
+    attributes:
+      comment:
+        content: Conteúdo
+        user: Usuário
+        user_id: Usuário
+        product: Produto
+        product_id: Produto

@@ -19,5 +19,8 @@ Rails.application.routes.draw do
     post 'deny', on: :member
     post 'cancel', on: :member
   end
-  resources :invoices, only: [:index, :show]
+  resources :invoices, only: [:index, :show] do
+    get 'sent', on: :collection
+    get 'received', on: :collection
+  end
 end

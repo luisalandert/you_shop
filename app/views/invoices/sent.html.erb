@@ -1,0 +1,8 @@
+<%= render 'navbar' %>
+<%= link_to 'Voltar', invoices_path %>
+
+<h1>Recibos Enviados</h1>
+
+<% @sent_invoices.each do |invoice| %>
+    <%= link_to invoice.description(invoice.buyer), invoice %>
+<% end %>

@@ -1,0 +1,19 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      invoice:
+        one: Recibo
+        other: Recibos
+    attributes:
+      invoice:
+        proposal: Proposta
+        proposal_id: Proposta
+        seller: Vendedor(a)
+        seller_id: Vendedor(a)
+        buyer: Comprador(a)
+        buyer_id: Comprador(a)
+        amount_due: Valor total
+        issue_date: Data da emissão
+        status: Status
+        token: Token

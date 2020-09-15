@@ -1,0 +1,5 @@
+<%= render 'navbar' %>
+<%= link_to 'Voltar', user_path(current_user.id) %>
+
+<p><%= link_to 'Recibos Enviados', sent_invoices_path %></p>
+<p><%= link_to 'Recibos Recebidos', received_invoices_path %></p>

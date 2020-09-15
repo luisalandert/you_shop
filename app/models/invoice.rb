@@ -13,6 +13,12 @@ class Invoice < ApplicationRecord
     self.amount_due = proposal.quantity * proposal.proposed_price
   end
   
+  def description(user)
+    price_currency = amount_due.to_s
+    price_currency['.']= ','
+    return "#{proposal.product.name} - #{user.social_name} - R$ #{price_currency + '0'}"
+  end
+
   private
   
   def generate_token
