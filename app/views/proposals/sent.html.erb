@@ -3,6 +3,8 @@
 
 <h1>Propostas Enviadas</h1>
 
+<%= link_to 'Canceladas', cancelled_proposals_path %>
+
 <%= 'Nenhuma proposta enviada.' if @proposals.empty? %>
 
 <% @proposals.each do |proposal| %>

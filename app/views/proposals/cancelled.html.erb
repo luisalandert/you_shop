@@ -1,0 +1,6 @@
+<%= render 'navbar' %>
+<%= link_to 'Voltar', received_proposals_path %>
+
+<% @proposals.each do |proposal| %>
+    <p><%= link_to proposal.description(proposal.seller), proposal %></p>
+<% end %>

@@ -3,8 +3,10 @@
 
 <h1>Propostas Recebidas</h1>
 
+<%= link_to 'Rejeitadas', rejected_proposals_path %>
+
 <%= 'Nenhuma proposta recebida.' if @proposals.empty? %>
 
 <% @proposals.each do |proposal| %>
-    <%= link_to proposal.description(proposal.buyer), proposal %>
+    <p><%= link_to proposal.description(proposal.buyer), proposal %></p>
 <% end %>

@@ -16,3 +16,12 @@
   <dt><%= Proposal.human_attribute_name :status %></dt>
   <dd><%= Proposal.human_attribute_name( "status.#{@proposal.status}")%></dd>
 </dl>
+
+<% if current_user.email == @proposal.seller.email %>
+  <p><%= link_to 'Aceitar', accept_proposal_path(@proposal), method: :post %></p>
+  <p><%= link_to 'Rejeitar', deny_proposal_path(@proposal), method: :post %></p>
+<% else %>
+  <p><%= link_to 'Cancelar', cancel_proposal_path(@proposal), method: :post %></p>
+<% end %>
+
+

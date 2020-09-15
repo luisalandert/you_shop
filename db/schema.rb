@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_032502) do
+ActiveRecord::Schema.define(version: 2020_09_14_210802) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,22 @@ ActiveRecord::Schema.define(version: 2020_09_13_032502) do
     t.string "email_domain"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.integer "proposal_id", null: false
+    t.integer "seller_id", null: false
+    t.integer "buyer_id", null: false
+    t.decimal "amount_due"
+    t.datetime "issue_date"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "token"
+    t.index ["buyer_id"], name: "index_invoices_on_buyer_id"
+    t.index ["proposal_id"], name: "index_invoices_on_proposal_id"
+    t.index ["seller_id"], name: "index_invoices_on_seller_id"
+    t.index ["token"], name: "index_invoices_on_token", unique: true
   end
 
   create_table "messages", force: :cascade do |t|
@@ -136,6 +152,9 @@ ActiveRecord::Schema.define(version: 2020_09_13_032502) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
+  add_foreign_key "invoices", "proposals"
+  add_foreign_key "invoices", "users", column: "buyer_id"
+  add_foreign_key "invoices", "users", column: "seller_id"
   add_foreign_key "messages", "products"
   add_foreign_key "messages", "users", column: "recipient_id"
   add_foreign_key "messages", "users", column: "sender_id"

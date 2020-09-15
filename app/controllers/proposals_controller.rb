@@ -10,6 +10,14 @@ class ProposalsController < ApplicationController
   def sent
     @proposals = current_user.sent_proposals
   end
+
+  def rejected
+    @proposals = current_user.received_proposals.denied
+  end
+  
+  def cancelled
+    @proposals = current_user.sent_proposals.cancelled
+  end
   
   def show
     @proposal = Proposal.find(params[:id])
@@ -37,6 +45,33 @@ class ProposalsController < ApplicationController
         render :new
         return
       end
+    end
+  end
+
+  def accept
+    proposal = Proposal.find(params[:id])
+    proposal.approved!
+    invoice = Invoice.new(proposal: proposal, seller: proposal.seller, buyer: proposal.buyer, issue_date: Time.zone.now)
+    if invoice.save
+      redirect_to invoice_path(invoice), notice: 'Venda finalizada com sucesso!'
+    end
+  end
+
+  def deny
+    proposal = Proposal.find(params[:id])
+    proposal.denied!
+    invoice = Invoice.new(proposal: proposal, seller: proposal.seller, buyer: proposal.buyer, issue_date: Time.zone.now)
+    if invoice.save
+      redirect_to received_proposals_path, notice: 'Proposta recusada!'
+    end
+  end
+
+  def cancel
+    proposal = Proposal.find(params[:id])
+    proposal.cancelled!
+    invoice = Invoice.new(proposal: proposal, seller: proposal.seller, buyer: proposal.buyer, issue_date: Time.zone.now)
+    if invoice.save
+      redirect_to sent_proposals_path, notice: 'Proposta cancelada!'
     end
   end
 

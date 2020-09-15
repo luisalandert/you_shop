@@ -13,5 +13,11 @@ Rails.application.routes.draw do
   resources :proposals, only: [:index, :show, :new, :create] do
     get 'received', on: :collection
     get 'sent', on: :collection
+    get 'cancelled', on: :collection
+    get 'rejected', on: :collection
+    post 'accept', on: :member
+    post 'deny', on: :member
+    post 'cancel', on: :member
   end
+  resources :invoices, only: [:index, :show]
 end
