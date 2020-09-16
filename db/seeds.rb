@@ -32,24 +32,34 @@ category_three = Category.create!(name: 'Cuidados Pessoais')
 category_four = Category.create!(name: 'Decoração')
 
 #Produtos
-product_one = Product.create!(name: 'Pães de mel', description: 'Caixa com 6 pães de mel ao leite com licor de chocolate.',
+product_one = Product.new(name: 'Pães de mel', description: 'Caixa com 6 pães de mel ao leite com licor de chocolate.',
                               category: category_one, quantity: 5, price: 25.00, condition: :new_product, 
                               user: user_one , status: :available)
+product_one.picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'paes_de_mel.png')),filename: 'paes_de_mel.png')
+product_one.save!
 product_two = Product.create!(name: 'Jaqueta jeans', description: 'Jaqueta jeans Shoulder tamanho 40 em ótimo estado.',
                               category: category_two, quantity: 1, price: 100.00, condition: :used,
                               user: user_one , status: :available)
+product_two.picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'jaqueta_jeans.jpg')),filename: 'jaqueta_jeans.jpg')
+product_two.save!
 product_three = Product.create!(name: 'Espelho decorado', description: 'Espelho decorado pintado à mão.',
                                 category: category_four, quantity: 1, price: 30.00, condition: :new_product,
                                 user: user_one , status: :available)
+product_three.picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'espelho_decorado.jpg')),filename: 'espelho_decorado.jpg')
+product_three.save!
 product_four = Product.create!(name: 'Chuteira', description: 'Chuteira Nike tamanho 38, usada poucas vezes.',
                                category: category_two, quantity: 1, price: 50.00 , condition: :used,
                                user: user_two, status: :available)
 product_five = Product.create!(name: 'Bolo no pote', description: 'Bolo recheado no pote, ótimo para comer no almoço! Sabores variados.',
                                category: category_one, quantity: 10, price: 10.00 , condition: :new_product,
                                user: user_two, status: :available)
+product_five.picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'bolo_no_pote.jpg')),filename: 'bolo_no_pote.jpg')
+product_five.save!
 product_six = Product.create!(name: 'Sabonetes artesanais', description: 'Sabonete artesanal, vegano e 100% natural, embalagem com 2. Opções: baunilha, verbena ou lírios',
                               category: category_three, quantity: 5, price: 15.00 , condition: :new_product,
                               user: user_two, status: :available)
+product_six.picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'sabonete.jpg')),filename: 'sabonete.jpg')
+product_six.save!
 another_product = Product.create!(name: 'Shampoo em barra', description: 'Shampoo em barra artesanal, embalagem com 1. Com verbena e babosa',
                                   category: category_three, quantity: 5, price: 15.00 , condition: :new_product,
                                   user: another_user, status: :available)
@@ -84,3 +94,9 @@ proposal_one = Proposal.create!(product: product_one, buyer: user_two, seller: u
 proposal_two = Proposal.create!(product: product_six, buyer: user_three, seller: user_two, proposed_price: 15, quantity: 1)
 proposal_three = Proposal.create!(product: product_two, buyer: user_three, seller: user_one, proposed_price: 80, quantity: 1)
 proposal_four = Proposal.create!(product: product_five, buyer: user_one, seller: user_two, proposed_price: 10, quantity: 2)
+proposal_five = Proposal.create!(product: product_six, buyer: user_one, seller: user_two, proposed_price: 15, quantity: 1)
+
+
+#Compras/recibos
+invoice_one = Invoice.create!(proposal: proposal_one, seller: user_one, buyer: user_two, issue_date: Date.current)
+invoice_two = Invoice.create!(proposal: proposal_five, seller: user_two, buyer: user_one, issue_date: Date.current)

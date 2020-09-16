@@ -1,9 +1,15 @@
 class MessagesController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
-    @message = Message.new(message_params)
+    content = params[:content]
+    recipient = params[:recipient]
+    @message = Message.new(content: content)
     @message.sender = current_user
-    @message.recipient = @product.user
+    if !recipient.blank?
+      @message.recipient = User.find(recipient)
+    else
+      @message.recipient = @product.user
+    end
     @message.product = @product
     if @message.save
       redirect_back(fallback_location: product_path(@product))
@@ -13,7 +19,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.permit(:content)
+    params.permit(:content, :recipient)
     # TODO: pq não tem a chave :message?
   end
 end

@@ -43,7 +43,7 @@
 <% end %>
 
 <%= form_with model: @comment, url: product_comments_path(@product), local: true do |f| %>
-  <p><%= f.label 'Comentário' %></p>
+  <p><%= f.label :content, 'Comentário' %></p>
   <p><%= f.text_area :content %></p>
   <p><%= f.submit 'Enviar Comentário' %></p>
 <% end %>
@@ -51,11 +51,11 @@
 <h2>Mensagens Privadas</h2>
 <p>As mensagens privadas só são visíveis para você e para o comprador.</p>
 
-<% if current_user.id == @product.user.id && !@messages.empty? %>
+<% if current_user.email == @product.user.email && !@messages.empty? %>
   <% @users.each do |user| %>
-    <%= link_to user.social_name, user_path(user.id) if user != current_user %>
-    <% received_messages = @messages.where(sender: user) %>
-    <% sent_messages = @messages.where(sender: current_user, recipient: user) %>
+    <%= link_to user.social_name, user_path(user.id)%>
+    <% received_messages = @available_messages.where(sender: user) %>
+    <% sent_messages = @available_messages.where(sender: current_user, recipient: user) %>
     <% user_messages = (received_messages + sent_messages).sort_by { |obj| obj.created_at }%> 
     <% user_messages.each do |message| %>
       <dl>
@@ -69,6 +69,19 @@
       </dl>
     <% end %>
   <% end %>
+  <div>
+      <%= form_with model: @message, url: product_messages_path(@product), local: true do |f| %>
+        <div>
+        <p><%= f.label :content, 'Mensagem' %></p>
+        <p><%= f.text_area :content, class: 'mensagem_text'  %></p>
+        </div>
+        <div>
+        <%= f.label :recipient, 'Destinatário' %>
+        <%= f.collection_select(:recipient, @users, :id, :social_name, prompt: 'Escolha o destinatário') %>
+        </div>
+        <p><%= f.submit 'Enviar Mensagem' %></p>
+      <% end %>
+    </div>
 <% elsif !@messages.empty? %>
   <% @available_messages.each do |message| %>
     <dl>
@@ -81,13 +94,14 @@
       <% end %>
     </dl>
   <% end %>
-<% end %>
   <div>
     <%= form_with model: @message, url: product_messages_path(@product), local: true do |f| %>
       <div>
-      <p><%= f.label 'Mensagem' %></p>
+      <p><%= f.label :content, 'Mensagem' %></p>
       <p><%= f.text_area :content, class: 'mensagem_text'  %></p>
       </div>
       <p><%= f.submit 'Enviar Mensagem' %></p>
     <% end %>
   </div>
+<% end %>
+  

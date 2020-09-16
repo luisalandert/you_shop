@@ -1,5 +1,5 @@
-feature 'User sends comment on product page' do
-  xscenario 'successfully' do
+xfeature 'User sends comment on product page' do
+  scenario 'successfully' do
     company_four = Company.create!(name:'Empresa Quatro', cnpj: '65.943.509/7880-04', address: 'Av. Tucuruvi, 562, São Paulo, SP',
                                    user_email: 'user@empresaquatro.com.br', email_domain: '@empresaquatro.com.br')
     user_four = User.create!(email: 'patricia@empresaquatro.com.br', password:'abc123', full_name:'Patricia Andrade',
@@ -16,7 +16,7 @@ feature 'User sends comment on product page' do
     
     login_as(another_user_four, scope: :user)
     visit products_path(1)
-    fill_in 'comment_content', with: 'Os pães de mel são recheados?'
+    fill_in 'Comentário', with: 'Os pães de mel são recheados?'
     click_on 'Enviar Comentário'
     # TODO: capybara não reconhece o campo do comentario
 
