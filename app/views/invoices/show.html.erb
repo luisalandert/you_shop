@@ -21,3 +21,7 @@
     <dt>Total:</dt>
     <dd><%= number_to_currency @invoice.amount_due %></dd>
 </dl>
+
+<% if current_user == @invoice.seller %>
+    <%= link_to 'Cancelar', cancel_invoice_path(@invoice.id), method: :post %>
+<% end %>

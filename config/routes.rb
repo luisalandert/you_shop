@@ -24,5 +24,6 @@ Rails.application.routes.draw do
   resources :invoices, only: [:index, :show] do
     get 'sent', on: :collection
     get 'received', on: :collection
+    post 'cancel', on: :member
   end
 end

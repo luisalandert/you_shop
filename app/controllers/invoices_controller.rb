@@ -15,4 +15,10 @@ class InvoicesController < ApplicationController
     @received_invoices = current_user.received_invoices
   end
 
+  def cancel
+    invoice = Invoice.find(params[:id])
+    Product.find(invoice.proposal.product.id).update(quantity: invoice.proposal.quantity)
+    Product.find(invoice.proposal.product.id).available!
+  end
+
 end
