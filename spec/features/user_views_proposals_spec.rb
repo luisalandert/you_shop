@@ -179,5 +179,4 @@ feature 'User views proposals' do
     expect(page).not_to have_content('Pães de mel - Ana Pacheco - R$ 25,00')
 
   end
-
 end

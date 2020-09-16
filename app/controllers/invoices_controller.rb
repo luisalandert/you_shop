@@ -19,6 +19,8 @@ class InvoicesController < ApplicationController
     invoice = Invoice.find(params[:id])
     Product.find(invoice.proposal.product.id).update(quantity: invoice.proposal.quantity)
     Product.find(invoice.proposal.product.id).available!
+    invoice.cancelled!
+    redirect_to invoice, notice: 'Pedido cancelado com sucesso.'
   end
 
 end

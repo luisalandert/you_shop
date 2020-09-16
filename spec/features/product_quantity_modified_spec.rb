@@ -50,6 +50,8 @@ feature 'Product quantity is modified when invoice is created' do
     product.reload()
     expect(proposal.product.quantity).to eq 5
     expect(product.available?).to eq true
+    expect(page).to have_content('Pedido cancelado com sucesso.')
+    expect(current_path).to eq invoice_path(Invoice.last)
 
   end
 end

@@ -5,8 +5,24 @@
 
 <%= link_to 'Canceladas', cancelled_proposals_path %>
 
-<p><%= 'Nenhuma proposta enviada.' if @proposals.empty? %></p>
+<% if @waiting_proposals.empty? && @approved_proposals.empty? && @denied_proposals.empty? %>
+    <p>Nenhuma proposta enviada.</p>
+<% end %>
 
-<% @proposals.each do |proposal| %>
-    <%= link_to proposal.description(proposal.seller), proposal %>
+<h2>Aguardando Resposta</h2>
+<p><%= 'Nenhuma proposta encontrada.' if @waiting_proposals.empty? %></p>
+<% @waiting_proposals.each do |proposal| %>
+    <p><%= link_to proposal.description(proposal.seller), proposal %><p>
+<% end %>
+
+<h2>Aprovada</h2>
+<p><%= 'Nenhuma proposta encontrada.' if @approved_proposals.empty? %></p>
+<% @approved_proposals.each do |proposal| %>
+    <p><%= link_to proposal.description(proposal.seller), proposal %><p>
+<% end %>
+
+<h2>Rejeitada</h2>
+<p><%= 'Nenhuma proposta encontrada.' if @denied_proposals.empty? %></p>
+<% @denied_proposals.each do |proposal| %>
+    <p><%= link_to proposal.description(proposal.seller), proposal %><p>
 <% end %>

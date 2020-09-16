@@ -8,7 +8,9 @@ class ProposalsController < ApplicationController
   end
 
   def sent
-    @proposals = current_user.sent_proposals
+    @waiting_proposals = current_user.sent_proposals.waiting
+    @approved_proposals = current_user.sent_proposals.approved
+    @denied_proposals = current_user.sent_proposals.denied
   end
 
   def rejected
@@ -16,7 +18,7 @@ class ProposalsController < ApplicationController
   end
   
   def cancelled
-    @proposals = current_user.sent_proposals.cancelled
+    @cancelled_proposals = current_user.sent_proposals.cancelled
   end
   
   def show

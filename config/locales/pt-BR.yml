@@ -21,6 +21,9 @@ pt-BR:
         denied: Negada
         cancelled: Cancelada
         approved: Aprovada
+      invoice/status:
+        finished: Finalizado
+        cancelled: Cancelado
   date:
     abbr_day_names:
     - dom

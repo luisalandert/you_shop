@@ -20,8 +20,11 @@
     <dd><%= l @invoice.issue_date %></dd>
     <dt>Total:</dt>
     <dd><%= number_to_currency @invoice.amount_due %></dd>
+    <dt>Status:</dt>
+    <dd><%= Invoice.human_attribute_name( "status.#{@invoice.status}") %></dd>
 </dl>
 
-<% if current_user == @invoice.seller %>
-    <%= link_to 'Cancelar', cancel_invoice_path(@invoice.id), method: :post %>
+<% if current_user == @invoice.seller && @invoice.finished? %>
+    <%= link_to 'Cancelar', cancel_invoice_path(@invoice.id), method: :post,
+        data: {confirm: 'Tem certeza que quer cancelar esse pedido?'} %>
 <% end %>

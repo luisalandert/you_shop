@@ -24,7 +24,8 @@
     <p><%= link_to 'Rejeitar', deny_proposal_path(@proposal), method: :post %></p>
   <% end %>
 <% else %>
-  <p><%= link_to 'Cancelar', cancel_proposal_path(@proposal), method: :post %></p>
+  <p><%= link_to 'Cancelar', cancel_proposal_path(@proposal), method: :post, 
+          data: {confirm: 'Tem certeza que quer cancelar essa proposta?'} %></p>
 <% end %>
 
 
