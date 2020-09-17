@@ -10,7 +10,7 @@ feature 'User logs in' do
     click_on 'Entrar'
     fill_in 'Email', with: user.email
     fill_in 'Senha', with: user.password
-    click_on 'Entrar'
+    click_on 'commit'
 
     expect(page).to have_content(user.full_name)
     expect(page).to have_content('Sair')
@@ -28,7 +28,7 @@ feature 'User logs in' do
     click_on 'Entrar'
     fill_in 'Email', with: user.email
     fill_in 'Senha', with: user.password
-    click_on 'Entrar'
+    click_on 'commit'
     click_on 'Sair'
 
     expect(page).to have_content('Entrar')
@@ -47,7 +47,7 @@ feature 'User logs in' do
     click_on 'Entrar'
     fill_in 'Email', with: user.email
     fill_in 'Senha', with: user.password
-    click_on 'Entrar'
+    click_on 'commit'
 
     expect(page).not_to have_content('Cadastro de Usuário')
     expect(page).not_to have_content('Cadastro de Empresa')

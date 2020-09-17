@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem "cpf_cnpj"
+gem "breadcrumbs_on_rails"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
