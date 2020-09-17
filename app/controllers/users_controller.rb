@@ -13,10 +13,10 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       if profile_complete?(@user)
         @user.complete!
-        redirect_to @user, alert: 'Perfil atualizado com sucesso!'
+        redirect_to @user, notice: 'Perfil atualizado com sucesso!'
       else
         @user.incomplete!
-        redirect_to @user, alert: 'Perfil atualizado com sucesso! Atenção: para ter acesso a todos os recursos seu perfil deve estar completo!'
+        redirect_to @user, notice: 'Perfil atualizado com sucesso! Atenção: para ter acesso a todos os recursos seu perfil deve estar completo!'
       end
     else
       @user = User.find(params[:id])
